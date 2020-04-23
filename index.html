@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+  <title>Ducks are Wild</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <script src="https://kit.fontawesome.com/a2ad8157e7.js" crossorigin="anonymous"></script>
+  <script>
+  var cards = [
+	'K,fa-yin-yang',
+	'K,fa-yin-yang',
+	'K,fa-yin-yang',
+	'K,fa-yin-yang',
+	'K,+4',
+	'K,+4',
+	'K,+4',
+	'K,+4',
+	'R,0',
+	'R,1',
+	'R,1',
+	'R,2',
+	'R,2',
+	'R,3',
+	'R,3',
+	'R,4',
+	'R,4',
+	'R,5',
+	'R,5',
+	'R,6',
+	'R,6',
+	'R,7',
+	'R,7',
+	'R,8',
+	'R,8',
+	'R,9',
+	'R,9',
+	'R,fa-compress-alt',
+	'R,fa-compress-alt',
+	'R,fa-ban',
+	'R,fa-ban',
+	'R,+2',
+	'R,+2',
+	'Y,0',
+	'Y,1',
+	'Y,1',
+	'Y,2',
+	'Y,2',
+	'Y,3',
+	'Y,3',
+	'Y,4',
+	'Y,4',
+	'Y,5',
+	'Y,5',
+	'Y,6',
+	'Y,6',
+	'Y,7',
+	'Y,7',
+	'Y,8',
+	'Y,8',
+	'Y,9',
+	'Y,9',
+	'Y,fa-compress-alt',
+	'Y,fa-compress-alt',
+	'Y,fa-ban',
+	'Y,fa-ban',
+	'Y,+2',
+	'Y,+2',
+	'G,0',
+	'G,1',
+	'G,1',
+	'G,2',
+	'G,2',
+	'G,3',
+	'G,3',
+	'G,4',
+	'G,4',
+	'G,5',
+	'G,5',
+	'G,6',
+	'G,6',
+	'G,7',
+	'G,7',
+	'G,8',
+	'G,8',
+	'G,9',
+	'G,9',
+	'G,fa-compress-alt',
+	'G,fa-compress-alt',
+	'G,fa-ban',
+	'G,fa-ban',
+	'G,+2',
+	'G,+2',
+	'B,0',
+	'B,1',
+	'B,1',
+	'B,2',
+	'B,2',
+	'B,3',
+	'B,3',
+	'B,4',
+	'B,4',
+	'B,5',
+	'B,5',
+	'B,6',
+	'B,6',
+	'B,7',
+	'B,7',
+	'B,8',
+	'B,8',
+	'B,9',
+	'B,9',
+	'B,fa-compress-alt',
+	'B,fa-compress-alt',
+	'B,fa-ban',
+	'B,fa-ban',
+	'B,+2',
+	'B,+2'
+  ];
+  var shuffle = function(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+  }
+  var ix = 0;
+  var c = 0;
+  var pickup = function(card) {
+	var card = cards[ix].split(',');
+	ix++;
+	c++;
+	$('.c-cards').text(c);
+	var $card = $('<div class="card"></div>');
+	var $mid = $('<div class="mid"></div>');
+	if(card[1].charAt(0) == 'f') {
+		$mid.append('<i class="fas '+ card[1] + '"></i>');
+	} else {
+		$mid.append('<span>'+ card[1] +'</span>');
+	}
+	$card.append($mid);
+	$card.addClass('card-'+card[0]);
+	$card.click(function(e) {
+	  e.preventDefault();
+      var $c = $(this);
+      $('.overlay').css('display', 'flex');
+	  var $d = $c.clone();
+      c--;
+      $('.overlay').append( $d );
+      $c.remove();
+	});
+	$('.cards').append($card); 
+  };
+  $(function() {
+	$('.b-deal').click(function(e) {
+	  shuffle(cards);
+      $('.cards').html('');
+	  ix = 0;
+      c = 0;
+	  while(ix < 7)
+		pickup();
+	});
+	$('.b-pick').click(function(e) {
+		pickup();
+	});
+	$('.overlay').click(function(e) {
+		$('.overlay').html('').css('display', 'none');
+	})
+  });
+  </script>
+  <style type="text/css">
+  body {
+	font-family: 'Baloo Paaji 2', cursive;
+	margin: 0;
+	padding: 0;
+  }
+  .head {
+	position: fixed;
+	z-index: 200;
+	top: 0;
+	height: 100px;
+	width: 100%;
+	background-color: #FFF;
+	padding-top: 4px;
+	text-align: center;
+  }
+  .cards {
+	padding-top: 100px;
+  }
+  .card {
+	border-radius: 5px;
+	border: 1px solid #333;
+	width: 150px;
+	height: 240px; 
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    float: left;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .card > * {
+	font-size: 120px;
+	color: #fff;
+	text-shadow: 5px 5px #000000;
+  }
+  .card-B {
+	background-color: #2e94d5;
+  }
+  .card-Y {
+	background-color: #efcc3a;
+  }
+  .card-G {
+	background-color: #3e9209;
+  }
+  .card-R {
+	background-color: #c23023;
+  }
+  .card-K {
+	background-color: #000000;
+  }
+  .overlay {
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	align-items: center;
+    justify-content: center;
+	background-color: #fff;
+  }
+  .overlay > .card {
+	width: 80%;
+	height: 80%;
+  }
+  .overlay > .card > * {
+	font-size: 40vw;
+  }
+  .head > button {
+    width: 35%;
+    height: 90px;	
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 5px;
+    color: #fff;
+	font-size: 40px;
+  }
+  button.b-deal {
+	float: left;
+	background-color: blueviolet;
+  }
+  button.b-pick {
+	float: right;
+	background-color:darkorange;
+	
+  }
+  .c-cards {
+	color: #CCC;
+	font-size: 80px;
+	line-height: 90px;
+  }
+  </style>
+</head>
+<body>
+<div class="head">
+<button class="b-deal">Deal</button>
+<button class="b-pick">Pickup</button>
+<span class="c-cards"></span>
+</div>
+<div class="cards">
+
+</div>
+<div class="overlay">
+
+</div>
+</body>
+</html>
