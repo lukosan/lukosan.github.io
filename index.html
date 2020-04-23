@@ -148,6 +148,7 @@
       $('.overlay').css('display', 'flex');
 	  var $d = $c.clone();
       c--;
+      $('.c-cards').text(c);
       $('.overlay').append( $d );
       $c.remove();
 	});
@@ -156,6 +157,7 @@
   $(function() {
 	$('.b-deal').click(function(e) {
 	  shuffle(cards);
+      $('.overlay').html('').css('display', 'none');
       $('.cards').html('');
 	  ix = 0;
       c = 0;
@@ -180,14 +182,14 @@
 	position: fixed;
 	z-index: 200;
 	top: 0;
-	height: 100px;
+	height: 160px;
 	width: 100%;
 	background-color: #FFF;
-	padding-top: 4px;
+	padding-top: 30px;
 	text-align: center;
   }
   .cards {
-	padding-top: 100px;
+	padding: 190px 20px 20px 20px;
   }
   .card {
 	border-radius: 5px;
@@ -234,20 +236,20 @@
 	background-color: #fff;
   }
   .overlay > .card {
-	width: 80%;
-	height: 80%;
+	width: 70%;
+	height: 70%;
   }
   .overlay > .card > * {
 	font-size: 40vw;
   }
   .head > button {
     width: 35%;
-    height: 90px;	
+    height: 100px;	
     margin-left: 2%;
     margin-right: 2%;
     border-radius: 5px;
     color: #fff;
-	font-size: 40px;
+	font-size: 50px;
   }
   button.b-deal {
 	float: left;
