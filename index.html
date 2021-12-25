@@ -1,283 +1,251 @@
 <!doctype html>
 <html>
-<head>
-  <title>Ducks are Wild</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&display=swap" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-  <script src="https://kit.fontawesome.com/a2ad8157e7.js" crossorigin="anonymous"></script>
-  <script>
-  var cards = [
-	'K,fa-yin-yang',
-	'K,fa-yin-yang',
-	'K,fa-yin-yang',
-	'K,fa-yin-yang',
-	'K,+4',
-	'K,+4',
-	'K,+4',
-	'K,+4',
-	'R,0',
-	'R,1',
-	'R,1',
-	'R,2',
-	'R,2',
-	'R,3',
-	'R,3',
-	'R,4',
-	'R,4',
-	'R,5',
-	'R,5',
-	'R,6',
-	'R,6',
-	'R,7',
-	'R,7',
-	'R,8',
-	'R,8',
-	'R,9',
-	'R,9',
-	'R,fa-compress-alt',
-	'R,fa-compress-alt',
-	'R,fa-ban',
-	'R,fa-ban',
-	'R,+2',
-	'R,+2',
-	'Y,0',
-	'Y,1',
-	'Y,1',
-	'Y,2',
-	'Y,2',
-	'Y,3',
-	'Y,3',
-	'Y,4',
-	'Y,4',
-	'Y,5',
-	'Y,5',
-	'Y,6',
-	'Y,6',
-	'Y,7',
-	'Y,7',
-	'Y,8',
-	'Y,8',
-	'Y,9',
-	'Y,9',
-	'Y,fa-compress-alt',
-	'Y,fa-compress-alt',
-	'Y,fa-ban',
-	'Y,fa-ban',
-	'Y,+2',
-	'Y,+2',
-	'G,0',
-	'G,1',
-	'G,1',
-	'G,2',
-	'G,2',
-	'G,3',
-	'G,3',
-	'G,4',
-	'G,4',
-	'G,5',
-	'G,5',
-	'G,6',
-	'G,6',
-	'G,7',
-	'G,7',
-	'G,8',
-	'G,8',
-	'G,9',
-	'G,9',
-	'G,fa-compress-alt',
-	'G,fa-compress-alt',
-	'G,fa-ban',
-	'G,fa-ban',
-	'G,+2',
-	'G,+2',
-	'B,0',
-	'B,1',
-	'B,1',
-	'B,2',
-	'B,2',
-	'B,3',
-	'B,3',
-	'B,4',
-	'B,4',
-	'B,5',
-	'B,5',
-	'B,6',
-	'B,6',
-	'B,7',
-	'B,7',
-	'B,8',
-	'B,8',
-	'B,9',
-	'B,9',
-	'B,fa-compress-alt',
-	'B,fa-compress-alt',
-	'B,fa-ban',
-	'B,fa-ban',
-	'B,+2',
-	'B,+2'
-  ];
-  var shuffle = function(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-  }
-  var ix = 0;
-  var c = 0;
-  var pickup = function(card) {
-	var card = cards[ix].split(',');
-	ix++;
-	c++;
-	$('.c-cards').text(c);
-	var $card = $('<div class="card"></div>');
-	var $mid = $('<div class="mid"></div>');
-	if(card[1].charAt(0) == 'f') {
-		$mid.append('<i class="fas '+ card[1] + '"></i>');
-	} else {
-		$mid.append('<span>'+ card[1] +'</span>');
-	}
-	$card.append($mid);
-	$card.addClass('card-'+card[0]);
-	$card.click(function(e) {
-	  e.preventDefault();
-      var $c = $(this);
-      $('.overlay').css('display', 'flex');
-	  var $d = $c.clone();
-      c--;
-      $('.c-cards').text(c);
-      $('.overlay').append( $d );
-      $c.remove();
-	});
-	$('.cards').prepend($card); 
-  };
-  $(function() {
-	$('.b-deal').click(function(e) {
-	  shuffle(cards);
-      $('.overlay').html('').css('display', 'none');
-      $('.cards').html('');
-	  ix = 0;
-      c = 0;
-	  while(ix < 7)
-		pickup();
-	});
-	$('.b-pick').click(function(e) {
-		pickup();
-	});
-	$('.overlay').click(function(e) {
-		$('.overlay').html('').css('display', 'none');
-	})
-  });
-  </script>
-  <style type="text/css">
-  body {
-	font-family: 'Baloo Paaji 2', cursive;
-	margin: 0;
-	padding: 0;
-  }
-  .head {
-	position: fixed;
-	z-index: 200;
-	top: 0;
-	height: 160px;
-	width: 100%;
-	background-color: #FFF;
-	padding-top: 30px;
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=PT+Sans&display=swap" rel="stylesheet">
+    <style type="text/css">
+ body {
+ 	font-family: 'Lobster', cursive;
+ 	color: #333;
+ 	padding-bottom: 3em;
+ }
+ section {
+    width: 80vw;
+    margin-left: 10vw;
+    clear: both;
+ }
+ h3 {
+ 	text-align: center;
+ 	font-size: 6vw;
+ }
+ h4 {
+ 	float: left;
+ 	width: 70vw;
+ 	margin-top: 0;
+ 	color: #666;
+ }
+ em {
+ 	float: right;
+ 	width: 10vw;
+ 	color: #666;
+ }
+ p {
+ 	color: #999;
+ 	clear: both;
+ 	font-family: 'PT Sans', sans-serif;
+ }
+ div.clock {
+    width:80vw; height:80vw;
+    margin-left: auto; 
+    margin-right: auto;
+	background: rgb(108,32,32);
+	background: radial-gradient(circle, rgba(108,32,32,1) 0%, rgba(215,163,87,1) 35%, rgba(157,83,28,1) 100%); 
+    border-radius: 50%;
+    position: relative; 
+    font-family: 'Lobster', cursive;
+} 
+div.clock > div {
+	position: absolute;
+	width: 10vw;
+	height: 10vw;
+	background: rgba(215,163,87,1);
 	text-align: center;
-  }
-  .cards {
-	padding: 190px 20px 20px 20px;
-  }
-  .card {
-	border-radius: 5px;
-	border: 1px solid #333;
-	width: 150px;
-	height: 240px; 
-	display: flex;
-	align-items: center;
-    justify-content: center;
-    float: left;
-    margin: 10px;
-    cursor: pointer;
-  }
-  .card > * {
-	font-size: 120px;
-	color: #fff;
-	text-shadow: 5px 5px #000000;
-  }
-  .card-B {
-	background-color: #2e94d5;
-  }
-  .card-Y {
-	background-color: #efcc3a;
-  }
-  .card-G {
-	background-color: #3e9209;
-  }
-  .card-R {
-	background-color: #c23023;
-  }
-  .card-K {
-	background-color: #000000;
-  }
-  .overlay {
-	position: fixed;
-	z-index: 100;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	display: none;
-	align-items: center;
-    justify-content: center;
-	background-color: #fff;
-  }
-  .overlay > .card {
-	width: 70%;
-	height: 70%;
-  }
-  .overlay > .card > * {
-	font-size: 40vw;
-  }
-  .head > button {
-    width: 35%;
-    height: 100px;	
-    margin-left: 2%;
-    margin-right: 2%;
-    border-radius: 5px;
-    color: #fff;
-	font-size: 50px;
-  }
-  button.b-deal {
-	float: left;
-	background-color: blueviolet;
-  }
-  button.b-pick {
-	float: right;
-	background-color:darkorange;
-	
-  }
-  .c-cards {
-	color: #CCC;
-	font-size: 80px;
-	line-height: 90px;
-  }
-  </style>
-</head>
-<body>
-<div class="head">
-<button class="b-deal">Deal</button>
-<button class="b-pick">Pickup</button>
-<span class="c-cards"></span>
-</div>
-<div class="cards">
+	border-radius: 50%;	
+}
+div.clock > div.active {
+	background: gold;
+}
+div.clock > div > a {
+	display: inline-block;
+	padding-top: 1.5vw;
+	font-size: 6vw;
+	text-decoration: none;
+	color: #6c2020;
+}
+div.clock > div:nth-child(12) {
+	top: 3vw;
+	left: 50%;
+	margin-left: -5vw;	
+}
+div.clock > div:nth-child(9) {
+	left: 3vw;
+	top: 50%;
+	margin-top: -5vw;	
+}
+div.clock > div:nth-child(6) {
+	bottom: 3vw;
+	left: 50%;
+	margin-left: -5vw;	
+}
+div.clock > div:nth-child(3) {
+	right: 3vw;
+	top: 50%;
+	margin-top: -5vw;	
+}
+div.clock > div:nth-child(2) {
+	right: 7vw;
+	top: 20vw;
+}
+div.clock > div:nth-child(1) {
+	right: 18vw;
+	top: 8vw;
+}
+div.clock > div:nth-child(4) {
+	right: 7vw;
+	bottom: 20vw;
+}
+div.clock > div:nth-child(5) {
+	right: 18vw;
+	bottom: 8vw;
+}
+div.clock > div:nth-child(7) {
+	left: 18vw;
+	bottom: 8vw;
+}
+div.clock > div:nth-child(8) {
+	left: 7vw;
+	bottom: 20vw;
+}
+div.clock > div:nth-child(11) {
+	left: 18vw;
+	top: 8vw;
+}
+div.clock > div:nth-child(10) {
+	left: 7vw;
+	top: 20vw;
+}
 
-</div>
-<div class="overlay">
 
-</div>
-</body>
+    </style>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>
+    <script>
+    $(function() {
+    	var today = new Date();
+    	var day = today.getDate();
+    	var month = today.getMonth();
+    	var xmas = month == 11 ? day - 24 : day + 7;
+    	if(xmas < 1 || xmas > 12)
+    		xmas = 12;
+    	$('section').not('#gin' + xmas).hide();
+    	$('.clock > div:nth-child('+xmas+')').addClass('active');
+    	$('a').click(function(e) {
+    		e.preventDefault();
+    		e.stopPropagation();
+    		var $a = $(this);
+    		var href = $a.attr('href');
+    		$('.clock > div').removeClass('active');
+    		$a.parent().addClass('active');
+    		$('section').hide();
+    		$('section' + href).show();
+    	});
+    });
+    </script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <div class="clock">
+          <div><a href="#gin1">1</a></div>
+          <div><a href="#gin2">2</a></div>
+          <div><a href="#gin3">3</a></div>
+          <div><a href="#gin4">4</a></div>
+          <div><a href="#gin5">5</a></div>
+          <div><a href="#gin6">6</a></div>
+          <div><a href="#gin7">7</a></div>
+          <div><a href="#gin8">8</a></div>
+          <div><a href="#gin9">9</a></div>
+          <div><a href="#gin10">10</a></div>
+          <div><a href="#gin11">11</a></div>
+          <div><a href="#gin12">12</a></div>
+        </div>
+      </header>
+      <section id="gin1">
+        <h3>1. Chapter One Signature Gin</h3>
+        <h4>Goosnargh Gin</h4>
+        <em>45%</em>
+        <p>Chapter One, our Signature Gin, contains a blend of 14 organic botanicals and launched in October 2018. Along with juniper, carefully selected botanicals, including meadowsweet, yarrow and elderflower, have been chosen to capture the spirit of the fells and surrounding meadows in each bottle. We were delighted when our signature gin was awarded a gold award in the prestigious International Wine and Spirit Competition (IWSC) 2019, receiving 95 out of a possible 100 points.</p>
+      </section>
+      <section id="gin2">
+        <h3>2. Signature Gin</h3>
+        <h4>Cuckoo</h4>
+        <em>43%</em>
+        <p>Cuckoo Signature Gin is a complex gin. It has a smooth mouth feel to aid those who like to sip. After a slightly sweet, piney juniper start. The flavour then develops into citrus from orange, grapefruit and lemons. Also with a lingering taste of cinnamon spice and liquorice. Our Cuckoo Signature Gin is dry on the finish with a peppery kick from coriander seeds.</p>
+      </section>
+      <section id="gin3">
+        <h3>3. It’s a Rum Do Dark Spiced Gin</h3>
+        <h4>Wild Fox Distillery</h4>
+        <em>42%</em>
+        <p>Our brand new lively tipple, born out of a desire to pair the best bits of rum with a good old Wild Fox twist to serve up a gin full of both comforting spice and rich Lancashire spirit.</p>
+        <p>The nations first. Rum Do is an original juniper forward recipe that will get taste buds dancing with notes of burnt caramel, cinnamon, woody coconut and subtle honey from dandelion rounded off with a luxurious wave of vanilla.</p>
+        <p>Double distilled, rested then redistilled and vapour infused with an enormity of dandelion heads from our farm – it is a real labour of craft love. Rum Do is aged in small 20L oak barrels which is by no means cost effective nor does it give the best yield, but resting for over a year in oak produces intense woody profiles to the spirit and results in the most glorious russet hue and a mellow mouthfeel.</p>
+      </section>
+      <section id="gin4">
+        <h3>4. The Classic Lancashire Dry Gin</h3>
+        <h4>Stable Yard Gin </h4>
+        <em>42%</em>
+        <p>Our Classic Gin is made using our still “Rosie” this is a true small batch gin we produce only 70 bottles per batch. Our classic has 10 carefully selected botanicals that include Red Apples, Hawthorn Berries, Heather Flowers, Bitter Orange, Fresh Lemon Zest, Ginger and a pinch of the exotic Grains of Paradise to produce a quality dry gin with delicate juniper notes complimented by beautiful citrus and floral tones. </p>
+      </section>
+      <section id="gin5">
+        <h3>5. Country Market Gin</h3>
+        <h4>The Ribble Valley Gin Company</h4>
+        <em></em>
+        <p>Our second signature gin pays homage to the simple vegetable patch and the traditional ‘Country Market’ for a contemporary take on classic gin.</p>
+      </section>
+      <section id="gin6">
+        <h3>6. The Holly &amp; the Ivy Christmas Spirit</h3>
+        <h4>Wild Fox Distillery</h4>
+        <em></em>
+        <p>Putting our fruitful tree’s to good use, we have again this year,  distilled in to each batch; 10kg of freshly picked damsons, farmhouse Aga dried clementine wheels and the perfect blend of Christmas spice in to our base recipe Gin. The aroma instantly transports you to the festive season with hints of star anise and cinnamon, on the pallet a spiced jammy flavour which pairs beautifully with hot water and honey for our Lancashire take on the ‘Hot toddy’ or simply pair with plenty of ice and a splash of Indian tonic water to create a festive G&amp;T.</p>
+      </section>
+      <section id="gin7">
+        <h3>7. Chapter Two</h3>
+        <h4>Goosnargh Gin</h4>
+        <em></em>
+        <p>Chapter Two - Dark Skies, launched in February 2019 to coincide with the Forest of Bowland AONB Dark Skies Festival events. This gin takes you into the Forest of Bowland at night, where nocturnal creatures abound. Look skywards and be transported under the famous dark skies of Bowland. The comforting blend of 12 organic botanicals we've selected create a delicately spiced gin, including aniseed, root ginger, cardamom and vanilla, perfect for watching the stars. Awarded a bronze in the IWSC 2020.</p>
+      </section>
+      <section id="gin8">
+        <h3>8. Kingsman Gin</h3>
+        <h4>The Ribble Valley Gin Company</h4>
+        <em></em>
+        <p>Introducing Kingsman Gin made exclusively for The Duke Of Lancaster’s Regimental Charity to support serving soldiers, veterans & their families.
+This has been a project close to our hearts as we have a strong connection with the Lions of England, we are honoured to have worked closely with the regiment on their bespoke gin.
+After extensive historical research this gin has been created to commemorate the historic lives and heroic achievements of the Kingsman, using botanicals that grew on their battlefields and that symbolise celebration days resulting in a complex & luxurious zesty gin.
+All proceeds from Kingsman Gin goes to The Duke Of Lancaster’s Regimental Charity.</p>
+      </section>
+      <section id="gin9">
+        <h3>9. Sloedown Gin</h3>
+        <h4>Cuckoo</h4>
+        <em>39%</em>
+        <p>We have infused this Limited Edition Cuckoo Gin with Sloeberries picked locally from Brindle, Wheelton and Whittle-le-Woods, Gaultheria Berries picked from Rivington Terrace Gardens and  Blackberries and Honey from our very own bees at Holmes Farm. Still punchy, ‘ginny’ and proper at 39% ABV, the result is a truly handmade Sloe Gin that is honest, local and bursting with autumnal flavour.</p>
+      </section>
+      <section id="gin10">
+        <h3>10. Navy Edition Lancashire Dry Gin</h3>
+        <h4>Stable Yard Gin</h4>
+        <em>57%</em>
+        <p>The New 57% Navy Edition is for the true gin drinkers, at 57% it delivers a punch which is bursting with flavour. The botanicals shine through the alcohol which is still as smooth as our Classic.</p>
+      </section>
+      <section id="gin11">
+        <h3>11. Twelve Bore Orange Zest &amp; Ginger Gin</h3>
+        <h4>Wild Fox Distillery</h4>
+        <em>45%</em>
+        <p>Celebrate the season and raise a glass to our nation of Game Keepers.
+An exquisitely complex Gin distilled at an explosive 45%.</p>
+<p><strong>Taste</strong>
+As soon as the cork is extracted you are hit with powerful citrus aromas of fresh orange zest. On the palate an exceptionally smooth mouth feel, juniper forward with a strong punch of orange, delicate but certainly present notes of fresh ginger warm at the finish.</p>
+<p><strong>The Perfect Serve</strong>
+This Gin makes the perfect G&amp;T and pairs superbly with ginger ale, but for those crisper days out on the peg add a little hot water and a tsp of honey for the perfect hip flask treat.</p>
+      </section>
+      <section id="gin12">
+        <h3>12. Winter’s Night Gin</h3>
+        <h4>The Ribble Valley Gin Company</h4>
+        <em></em>
+        <p>For our winter edition gin we have taken inspiration from the ‘Christingle’ and long winter nights by the fire. Combining peppery citrus with smoky black cardamom, our Winter’s Night gin is the perfect tipple to warm you through the festive season.</p>
+      </section>
+    </article>
+  </body>
 </html>
